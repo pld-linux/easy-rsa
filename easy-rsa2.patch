@@ -8,9 +8,9 @@
 -"$EASY_RSA/pkitool" --interact --initca $*
 +export EASY_RSA="${EASY_RSA:-/etc/easy-rsa}"
 +/usr/sbin/pkitool --interact --initca $*
---- openvpn-2.2.0-orig/easy-rsa/2.0/build-dh	2011-04-06 18:05:52.000000000 +0200
-+++ openvpn-2.2.0/easy-rsa/2.0/build-dh	2011-04-27 22:36:11.867656490 +0200
-@@ -3,8 +3,12 @@
+--- openvpn-2.2.0/easy-rsa/2.0/build-dh	2011-04-27 22:36:11.867656490 +0200
++++ easy-rsa-2.2.2/easy-rsa/2.0/build-dh	2015-06-02 21:31:45.871587248 +0300
+@@ -3,4 +3,11 @@
  # Build Diffie-Hellman parameters for the server side
  # of an SSL/TLS connection.
  
@@ -18,12 +18,10 @@
 +       . /etc/easy-rsa/vars
 +fi
 +
++# Set tool defaults
++[ -n "$OPENSSL" ] || export OPENSSL="openssl"
++
  if [ -d $KEY_DIR ] && [ $KEY_SIZE ]; then
--    $OPENSSL dhparam -out ${KEY_DIR}/dh${KEY_SIZE}.pem ${KEY_SIZE}
-+    openssl dhparam -out ${KEY_DIR}/dh${KEY_SIZE}.pem ${KEY_SIZE}
- else
-     echo 'Please source the vars script first (i.e. "source ./vars")'
-     echo 'Make sure you have edited it to reflect your configuration.'
 --- openvpn-2.2.0-orig/easy-rsa/2.0/build-inter	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/build-inter	2011-04-27 22:37:59.789289422 +0200
 @@ -3,5 +3,5 @@
@@ -120,9 +118,9 @@
  # The EXPORT_CA file will contain the CA certificate chain and should be
  # referenced by the OpenVPN "ca" directive in config files.  The ca.crt file
  # will only contain the local intermediate CA -- it's needed by the easy-rsa
---- easy-rsa-2.2.2/easy-rsa/2.0/list-crl~	2013-11-09 05:38:30.000000000 +0200
-+++ easy-rsa-2.2.2/easy-rsa/2.0/list-crl	2015-06-02 21:09:57.640431912 +0300
-@@ -2,11 +2,15 @@
+--- easy-rsa-2.2.2/easy-rsa/2.0/list-crl	2015-06-02 21:09:57.640431912 +0300
++++ easy-rsa-2.2.2/easy-rsa/2.0/list-crl	2015-06-02 21:28:49.245772384 +0300
+@@ -2,6 +2,13 @@
  
  # list revoked certificates
  
@@ -130,15 +128,12 @@
 +	. /etc/easy-rsa/vars
 +fi
 +
++# Set tool defaults
++[ -n "$OPENSSL" ] || export OPENSSL="openssl"
++
  CRL="${1:-crl.pem}"
  
  if [ "$KEY_DIR" ]; then
-     cd "$KEY_DIR" && \
--        $OPENSSL crl -text -noout -in "$CRL"
-+        openssl crl -text -noout -in "$CRL"
- else
-     echo 'Please source the vars script first (i.e. "source ./vars")'
-     echo 'Make sure you have edited it to reflect your configuration.'
 --- easy-rsa-2.2.2/easy-rsa/2.0/pkitool~	2015-06-02 21:08:57.000000000 +0300
 +++ easy-rsa-2.2.2/easy-rsa/2.0/pkitool	2015-06-02 21:11:42.382534794 +0300
 @@ -42,6 +42,10 @@
@@ -152,9 +147,9 @@
  need_vars()
  {
      echo '  Please edit the vars script to reflect your configuration,'
---- openvpn-2.2.0-orig/easy-rsa/2.0/revoke-full	2011-04-06 18:05:52.000000000 +0200
-+++ openvpn-2.2.0/easy-rsa/2.0/revoke-full	2011-04-27 22:56:07.449351374 +0200
-@@ -3,6 +3,10 @@
+--- openvpn-2.2.0/easy-rsa/2.0/revoke-full	2011-04-27 22:56:07.449351374 +0200
++++ easy-rsa-2.2.2/easy-rsa/2.0/revoke-full	2015-06-02 21:30:26.690819476 +0300
+@@ -3,6 +3,13 @@
  # revoke a certificate, regenerate CRL,
  # and verify revocation
  
@@ -162,32 +157,12 @@
 +       . /etc/easy-rsa/vars
 +fi
 +
++# Set tool defaults
++[ -n "$OPENSSL" ] || export OPENSSL="openssl"
++
  CRL="crl.pem"
  RT="revoke-test.pem"
  
-@@ -21,11 +25,11 @@
-     export KEY_NAME=""
- 
-     # revoke key and generate a new CRL
--    $OPENSSL ca -revoke "$1.crt" -config "$KEY_CONFIG"
-+    openssl ca -revoke "$1" -config "$KEY_CONFIG"
- 
-     # generate a new CRL -- try to be compatible with
-     # intermediate PKIs
--    $OPENSSL ca -gencrl -out "$CRL" -config "$KEY_CONFIG"
-+    openssl ca -gencrl -out "$CRL" -config "$KEY_CONFIG"
-     if [ -e export-ca.crt ]; then
- 	cat export-ca.crt "$CRL" >"$RT"
-     else
-@@ -33,7 +37,7 @@
-     fi
-     
-     # verify the revocation
--    $OPENSSL verify -CAfile "$RT" -crl_check "$1.crt"
-+    openssl verify -CAfile "$RT" -crl_check "$1"
- else
-     echo 'Please source the vars script first (i.e. "source ./vars")'
-     echo 'Make sure you have edited it to reflect your configuration.'
 --- openvpn-2.2.0-orig/easy-rsa/2.0/sign-req	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/sign-req	2011-04-27 22:56:46.124465700 +0200
 @@ -3,5 +3,5 @@
