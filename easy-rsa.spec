@@ -1,16 +1,20 @@
 Summary:	Small RSA key management package
 Summary(pl.UTF-8):	Mały pakiet do zarządzania kluczami RSA
 Name:		easy-rsa
-Version:	2.2.0
+Version:	2.2.2
 Release:	1
 License:	GPL
-Group:		Applications
-Source0:	http://build.openvpn.net/downloads/releases/%{name}-%{version}_master.tar.gz
-# Source0-md5:	fbf818b6e1f212e77b9ce0e6d92584a1
+Group:		Applications/Networking
+Source0:	https://github.com/OpenVPN/easy-rsa/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	040238338980617bc9c2df4274349593
 Patch0:		%{name}2.patch
 URL:		http://openvpn.net/easyrsa.html
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 Requires:	grep
 Requires:	openssl-tools
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -26,17 +30,19 @@ linii poleceń openssl. Pakiet ten pochodzi z podkatalogu easy-rsa
 dystrybucji OpenVPN.
 
 %prep
-%setup -q -n %{name}-%{version}_master
+%setup -q
 %patch0 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 %configure
-
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_sysconfdir}/easy-rsa/keys}
 
 %{__make} install \
@@ -47,6 +53,7 @@ rm $RPM_BUILD_ROOT%{_datadir}/easy-rsa/openssl-*.cnf
 mv $RPM_BUILD_ROOT%{_datadir}/easy-rsa/vars $RPM_BUILD_ROOT%{_sysconfdir}/easy-rsa/
 mv $RPM_BUILD_ROOT%{_datadir}/easy-rsa/pkitool $RPM_BUILD_ROOT%{_sbindir}
 
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT

@@ -1,4 +1,3 @@
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-ca openvpn-2.2.0/easy-rsa/2.0/build-ca
 --- openvpn-2.2.0-orig/easy-rsa/2.0/build-ca	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/build-ca	2011-04-27 22:34:59.357652908 +0200
 @@ -4,5 +4,5 @@
@@ -9,7 +8,6 @@ diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-ca openvpn-2.2.0/easy-rsa/2.0/bui
 -"$EASY_RSA/pkitool" --interact --initca $*
 +export EASY_RSA="${EASY_RSA:-/etc/easy-rsa}"
 +/usr/sbin/pkitool --interact --initca $*
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-dh openvpn-2.2.0/easy-rsa/2.0/build-dh
 --- openvpn-2.2.0-orig/easy-rsa/2.0/build-dh	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/build-dh	2011-04-27 22:36:11.867656490 +0200
 @@ -3,8 +3,12 @@
@@ -26,7 +24,6 @@ diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-dh openvpn-2.2.0/easy-rsa/2.0/bui
  else
      echo 'Please source the vars script first (i.e. "source ./vars")'
      echo 'Make sure you have edited it to reflect your configuration.'
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-inter openvpn-2.2.0/easy-rsa/2.0/build-inter
 --- openvpn-2.2.0-orig/easy-rsa/2.0/build-inter	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/build-inter	2011-04-27 22:37:59.789289422 +0200
 @@ -3,5 +3,5 @@
@@ -37,7 +34,6 @@ diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-inter openvpn-2.2.0/easy-rsa/2.0/
 -"$EASY_RSA/pkitool" --interact --inter $*
 +export EASY_RSA="${EASY_RSA:-/etc/easy-rsa}"
 +/usr/sbin/pkitool --interact --inter $*
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-key openvpn-2.2.0/easy-rsa/2.0/build-key
 --- openvpn-2.2.0-orig/easy-rsa/2.0/build-key	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/build-key	2011-04-27 22:38:35.330924876 +0200
 @@ -3,5 +3,5 @@
@@ -48,7 +44,6 @@ diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-key openvpn-2.2.0/easy-rsa/2.0/bu
 -"$EASY_RSA/pkitool" --interact $*
 +export EASY_RSA="${EASY_RSA:-/etc/easy-rsa}"
 +/usr/sbin/pkitool --interact $*
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-key-pass openvpn-2.2.0/easy-rsa/2.0/build-key-pass
 --- openvpn-2.2.0-orig/easy-rsa/2.0/build-key-pass	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/build-key-pass	2011-04-27 22:39:23.919827311 +0200
 @@ -3,5 +3,5 @@
@@ -59,7 +54,6 @@ diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-key-pass openvpn-2.2.0/easy-rsa/2
 -"$EASY_RSA/pkitool" --interact --pass $*
 +export EASY_RSA="${EASY_RSA:-/etc/easy-rsa}"
 +/usr/sbin/pkitool --interact --pass $*
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-key-pkcs12 openvpn-2.2.0/easy-rsa/2.0/build-key-pkcs12
 --- openvpn-2.2.0-orig/easy-rsa/2.0/build-key-pkcs12	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/build-key-pkcs12	2011-04-27 22:40:10.288627524 +0200
 @@ -4,5 +4,5 @@
@@ -70,7 +64,6 @@ diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-key-pkcs12 openvpn-2.2.0/easy-rsa
 -"$EASY_RSA/pkitool" --interact --pkcs12 $*
 +export EASY_RSA="${EASY_RSA:-/etc/easy-rsa}"
 +/usr/sbin/pkitool --interact --pkcs12 $*
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-key-server openvpn-2.2.0/easy-rsa/2.0/build-key-server
 --- openvpn-2.2.0-orig/easy-rsa/2.0/build-key-server	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/build-key-server	2011-04-27 22:41:24.715385295 +0200
 @@ -6,5 +6,5 @@
@@ -81,7 +74,6 @@ diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-key-server openvpn-2.2.0/easy-rsa
 -"$EASY_RSA/pkitool" --interact --server $*
 +export EASY_RSA="${EASY_RSA:-/etc/easy-rsa}"
 +/usr/sbin/pkitool --interact --server $*
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-req openvpn-2.2.0/easy-rsa/2.0/build-req
 --- openvpn-2.2.0-orig/easy-rsa/2.0/build-req	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/build-req	2011-04-27 22:41:59.636992013 +0200
 @@ -3,5 +3,5 @@
@@ -92,7 +84,6 @@ diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-req openvpn-2.2.0/easy-rsa/2.0/bu
 -"$EASY_RSA/pkitool" --interact --csr $*
 +export EASY_RSA="${EASY_RSA:-/etc/easy-rsa}"
 +/usr/sbin/pkitool --interact --csr $*
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-req-pass openvpn-2.2.0/easy-rsa/2.0/build-req-pass
 --- openvpn-2.2.0-orig/easy-rsa/2.0/build-req-pass	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/build-req-pass	2011-04-27 22:43:36.938135257 +0200
 @@ -3,5 +3,5 @@
@@ -103,7 +94,6 @@ diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/build-req-pass openvpn-2.2.0/easy-rsa/2
 -"$EASY_RSA/pkitool" --interact --csr --pass $*
 +export EASY_RSA="${EASY_RSA:-/etc/easy-rsa}"
 +/usr/sbin/pkitool --interact --csr --pass $*
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/clean-all openvpn-2.2.0/easy-rsa/2.0/clean-all
 --- openvpn-2.2.0-orig/easy-rsa/2.0/clean-all	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/clean-all	2011-04-27 22:44:36.544210785 +0200
 @@ -4,6 +4,10 @@
@@ -117,7 +107,6 @@ diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/clean-all openvpn-2.2.0/easy-rsa/2.0/cl
  if [ "$KEY_DIR" ]; then
      rm -rf "$KEY_DIR"
      mkdir "$KEY_DIR" && \
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/inherit-inter openvpn-2.2.0/easy-rsa/2.0/inherit-inter
 --- openvpn-2.2.0-orig/easy-rsa/2.0/inherit-inter	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/inherit-inter	2011-04-27 22:45:20.809580498 +0200
 @@ -9,6 +9,10 @@
@@ -131,29 +120,27 @@ diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/inherit-inter openvpn-2.2.0/easy-rsa/2.
  # The EXPORT_CA file will contain the CA certificate chain and should be
  # referenced by the OpenVPN "ca" directive in config files.  The ca.crt file
  # will only contain the local intermediate CA -- it's needed by the easy-rsa
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/list-crl openvpn-2.2.0/easy-rsa/2.0/list-crl
---- openvpn-2.2.0-orig/easy-rsa/2.0/list-crl	2011-04-06 18:05:52.000000000 +0200
-+++ openvpn-2.2.0/easy-rsa/2.0/list-crl	2011-04-27 22:46:23.149114937 +0200
+--- easy-rsa-2.2.2/easy-rsa/2.0/list-crl~	2013-11-09 05:38:30.000000000 +0200
++++ easy-rsa-2.2.2/easy-rsa/2.0/list-crl	2015-06-02 21:09:57.640431912 +0300
 @@ -2,11 +2,15 @@
  
  # list revoked certificates
  
 +if [ -z "$EASY_RSA" ]; then
-+       . /etc/easy-rsa/vars
++	. /etc/easy-rsa/vars
 +fi
 +
  CRL="${1:-crl.pem}"
  
  if [ "$KEY_DIR" ]; then
      cd "$KEY_DIR" && \
--	$OPENSSL crl -text -noout -in "$CRL"
-+	openssl crl -text -noout -in "$CRL"
+-        $OPENSSL crl -text -noout -in "$CRL"
++        openssl crl -text -noout -in "$CRL"
  else
      echo 'Please source the vars script first (i.e. "source ./vars")'
      echo 'Make sure you have edited it to reflect your configuration.'
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/pkitool openvpn-2.2.0/easy-rsa/2.0/pkitool
---- openvpn-2.2.0-orig/easy-rsa/2.0/pkitool	2011-04-06 18:05:52.000000000 +0200
-+++ openvpn-2.2.0/easy-rsa/2.0/pkitool	2011-04-27 22:53:35.735697923 +0200
+--- easy-rsa-2.2.2/easy-rsa/2.0/pkitool~	2015-06-02 21:08:57.000000000 +0300
++++ easy-rsa-2.2.2/easy-rsa/2.0/pkitool	2015-06-02 21:11:42.382534794 +0300
 @@ -42,6 +42,10 @@
      exit 1
  }
@@ -165,97 +152,6 @@ diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/pkitool openvpn-2.2.0/easy-rsa/2.0/pkit
  need_vars()
  {
      echo '  Please edit the vars script to reflect your configuration,'
-@@ -172,16 +176,16 @@
- 		     if [ -z "$PKCS11_LABEL" ]; then
- 		       die "Please specify library name, slot and label"
- 		     fi
--		     $PKCS11TOOL --module "$PKCS11_MODULE_PATH" --init-token --slot "$PKCS11_SLOT" \
-+		     pkcs11-tool --module "$PKCS11_MODULE_PATH" --init-token --slot "$PKCS11_SLOT" \
- 		     	--label "$PKCS11_LABEL" &&
--			$PKCS11TOOL --module "$PKCS11_MODULE_PATH" --init-pin --slot "$PKCS11_SLOT"
-+			pkcs11-tool --module "$PKCS11_MODULE_PATH" --init-pin --slot "$PKCS11_SLOT"
- 		     exit $?;;
- 	--pkcs11-slots)
- 	             PKCS11_MODULE_PATH="$2"
- 		     if [ -z "$PKCS11_MODULE_PATH" ]; then
- 		       die "Please specify library name"
- 		     fi
--		     $PKCS11TOOL --module "$PKCS11_MODULE_PATH" --list-slots
-+		     pkcs11-tool --module "$PKCS11_MODULE_PATH" --list-slots
- 		     exit 0;;
- 	--pkcs11-objects)
- 	             PKCS11_MODULE_PATH="$2"
-@@ -189,7 +193,7 @@
- 		     if [ -z "$PKCS11_SLOT" ]; then
- 		       die "Please specify library name and slot"
- 		     fi
--		     $PKCS11TOOL --module "$PKCS11_MODULE_PATH" --list-objects --login --slot "$PKCS11_SLOT"
-+		     pkcs11-tool --module "$PKCS11_MODULE_PATH" --list-objects --login --slot "$PKCS11_SLOT"
- 		     exit 0;;
- 
-         --help|--usage)
-@@ -206,7 +210,7 @@
- done
- 
- if ! [ -z "$BATCH" ]; then
--	if $OPENSSL version | grep 0.9.6 > /dev/null; then
-+	if openssl version | grep 0.9.6 > /dev/null; then
- 		die "Batch mode is unsupported in openssl<0.9.7"
- 	fi
- fi
-@@ -311,7 +315,7 @@
- 
-     # Make sure $KEY_CONFIG points to the correct version
-     # of openssl.cnf
--    if $GREP -i 'easy-rsa version 2\.[0-9]' "$KEY_CONFIG" >/dev/null; then
-+    if grep -i 'easy-rsa version 2\.[0-9]' "$KEY_CONFIG" >/dev/null; then
- 	:
-     else
- 	echo "$PROGNAME: KEY_CONFIG (set by the ./vars script) is pointing to the wrong"
-@@ -322,7 +326,7 @@
- 
-     # Build root CA
-     if [ $DO_ROOT -eq 1 ]; then
--	$OPENSSL req $BATCH -days $CA_EXPIRE $NODES_REQ -new -newkey rsa:$KEY_SIZE -sha1 \
-+	openssl req $BATCH -days $CA_EXPIRE $NODES_REQ -new -newkey rsa:$KEY_SIZE -sha1 \
- 	    -x509 -keyout "$CA.key" -out "$CA.crt" -config "$KEY_CONFIG" && \
- 	    chmod 0600 "$CA.key"
-     else        
-@@ -345,7 +349,7 @@
- 		export PKCS11_PIN
- 
- 		echo "Generating key pair on PKCS#11 token..."
--		$PKCS11TOOL --module "$PKCS11_MODULE_PATH" --keypairgen \
-+		pkcs11-tool --module "$PKCS11_MODULE_PATH" --keypairgen \
- 			--login --pin "$PKCS11_PIN" \
- 			--key-type rsa:1024 \
- 			--slot "$PKCS11_SLOT" --id "$PKCS11_ID" --label "$PKCS11_LABEL" || exit 1
-@@ -353,19 +357,19 @@
- 	fi
- 
-         # Build cert/key
--	( [ $DO_REQ -eq 0 ] || $OPENSSL req $BATCH -days $KEY_EXPIRE $NODES_REQ -new -newkey rsa:$KEY_SIZE \
-+	( [ $DO_REQ -eq 0 ] || openssl req $BATCH -days $KEY_EXPIRE $NODES_REQ -new -newkey rsa:$KEY_SIZE \
- 	        -keyout "$FN.key" -out "$FN.csr" $REQ_EXT -config "$KEY_CONFIG" $PKCS11_ARGS ) && \
--	    ( [ $DO_CA -eq 0 ]  || $OPENSSL ca $BATCH -days $KEY_EXPIRE -out "$FN.crt" \
-+	    ( [ $DO_CA -eq 0 ]  || openssl ca $BATCH -days $KEY_EXPIRE -out "$FN.crt" \
- 	        -in "$FN.csr" $CA_EXT -md sha1 -config "$KEY_CONFIG" ) && \
--	    ( [ $DO_P12 -eq 0 ] || $OPENSSL pkcs12 -export -inkey "$FN.key" \
-+	    ( [ $DO_P12 -eq 0 ] || openssl pkcs12 -export -inkey "$FN.key" \
- 	        -in "$FN.crt" -certfile "$CA.crt" -out "$FN.p12" $NODES_P12 ) && \
- 	    ( [ $DO_CA -eq 0 -o $DO_P11 -eq 1 ]  || chmod 0600 "$FN.key" ) && \
- 	    ( [ $DO_P12 -eq 0 ] || chmod 0600 "$FN.p12" )
- 
- 	# Load certificate into PKCS#11 token
- 	if [ $DO_P11 -eq 1 ]; then
--		$OPENSSL x509 -in "$FN.crt" -inform PEM -out "$FN.crt.der" -outform DER && \
--		  $PKCS11TOOL --module "$PKCS11_MODULE_PATH" --write-object "$FN.crt.der" --type cert \
-+		openssl x509 -in "$FN.crt" -inform PEM -out "$FN.crt.der" -outform DER && \
-+		  pkcs11-tool --module "$PKCS11_MODULE_PATH" --write-object "$FN.crt.der" --type cert \
- 			--login --pin "$PKCS11_PIN" \
- 			--slot "$PKCS11_SLOT" --id "$PKCS11_ID" --label "$PKCS11_LABEL" 
- 		[ -e "$FN.crt.der" ]; rm "$FN.crt.der"
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/revoke-full openvpn-2.2.0/easy-rsa/2.0/revoke-full
 --- openvpn-2.2.0-orig/easy-rsa/2.0/revoke-full	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/revoke-full	2011-04-27 22:56:07.449351374 +0200
 @@ -3,6 +3,10 @@
@@ -292,7 +188,6 @@ diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/revoke-full openvpn-2.2.0/easy-rsa/2.0/
  else
      echo 'Please source the vars script first (i.e. "source ./vars")'
      echo 'Make sure you have edited it to reflect your configuration.'
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/sign-req openvpn-2.2.0/easy-rsa/2.0/sign-req
 --- openvpn-2.2.0-orig/easy-rsa/2.0/sign-req	2011-04-06 18:05:52.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/sign-req	2011-04-27 22:56:46.124465700 +0200
 @@ -3,5 +3,5 @@
@@ -303,7 +198,6 @@ diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/sign-req openvpn-2.2.0/easy-rsa/2.0/sig
 -"$EASY_RSA/pkitool" --interact --sign $*
 +export EASY_RSA="${EASY_RSA:-/etc/easy-rsa}"
 +/usr/sbin/pkitool --interact --sign $*
-diff -ur openvpn-2.2.0-orig/easy-rsa/2.0/vars openvpn-2.2.0/easy-rsa/2.0/vars
 --- openvpn-2.2.0-orig/easy-rsa/2.0/vars	2010-10-21 11:18:17.000000000 +0200
 +++ openvpn-2.2.0/easy-rsa/2.0/vars	2011-04-27 22:58:41.789791888 +0200
 @@ -12,21 +12,12 @@
