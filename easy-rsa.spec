@@ -3,15 +3,14 @@ Summary(pl.UTF-8):	Mały pakiet do zarządzania kluczami RSA
 Name:		easy-rsa
 Version:	2.2.2
 Release:	1
-License:	GPL
+License:	GPL v2
 Group:		Applications/Networking
 Source0:	https://github.com/OpenVPN/easy-rsa/archive/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	040238338980617bc9c2df4274349593
 Patch0:		%{name}2.patch
 URL:		http://openvpn.net/easyrsa.html
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	autoconf >= 2.59
+BuildRequires:	automake >= 1:1.9
 Requires:	grep
 Requires:	openssl-tools
 BuildArch:	noarch
@@ -34,7 +33,6 @@ dystrybucji OpenVPN.
 %patch0 -p1
 
 %build
-%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
@@ -60,7 +58,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/README-2.0
+# note: COPYING contains general notes, not GPL text
+%doc COPYING README doc/README-2.0
 %dir %{_sysconfdir}/easy-rsa
 %attr(700,root,root) %dir %{_sysconfdir}/easy-rsa/keys
 %config(noreplace) %attr(640,root,root) %verify(not md5 mtime size) %{_sysconfdir}/easy-rsa/vars
