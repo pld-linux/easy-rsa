@@ -2,7 +2,7 @@ Summary:	Small RSA key management package
 Summary(pl.UTF-8):	Mały pakiet do zarządzania kluczami RSA
 Name:		easy-rsa
 Version:	2.2.2
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	https://github.com/OpenVPN/easy-rsa/archive/%{version}/%{name}-%{version}.tar.gz
